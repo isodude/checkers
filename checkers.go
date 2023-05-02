@@ -17,6 +17,21 @@ const (
 	UNKNOWN
 )
 
+func ParseStatus(st string) (Status, bool) {
+	switch strings.ToUpper(st) {
+	case "OK":
+		return checkers.OK, true
+	case "WARNING":
+		return checkers.WARNING, true
+	case "CRITICAL":
+		return checkers.CRITICAL, true
+	case "UNKNOWN":
+		return checkers.UNKNOWN, true
+	}
+
+	return checkers.UNKNOWN, false
+}
+
 func (st Status) String() string {
 	switch st {
 	case 0:
