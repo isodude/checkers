@@ -4,6 +4,7 @@ package checkers
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 // Status declare the result of the checker command
@@ -16,6 +17,21 @@ const (
 	CRITICAL
 	UNKNOWN
 )
+
+func ParseStatus(st string) (Status, bool) {
+	switch strings.ToUpper(st) {
+	case "OK":
+		return OK, true
+	case "WARNING":
+		return WARNING, true
+	case "CRITICAL":
+		return CRITICAL, true
+	case "UNKNOWN":
+		return UNKNOWN, true
+	}
+
+	return UNKNOWN, false
+}
 
 func (st Status) String() string {
 	switch st {
