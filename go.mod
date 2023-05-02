@@ -1,3 +1,3 @@
-module github.com/mackerelio/checkers
+module github.com/isodude/checkers
 
 go 1.18
