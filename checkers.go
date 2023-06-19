@@ -54,9 +54,20 @@ func NewChecker(st Status, msg string) *Checker {
 	}
 }
 
+// NewChecker returns new Checker
+func NewCheckerTerse(st Status, msg string, terse bool) *Checker {
+	return &Checker{
+		Status:  st,
+		Message: msg,
+        Terse:   terse,
+	}
+}
+
+
 // Checker is utility struct for check script
 type Checker struct {
 	Name    string
+	Terse   bool
 	Status  Status
 	Message string
 }
@@ -70,6 +81,10 @@ func (ckr *Checker) Exit() {
 }
 
 func (ckr *Checker) String() string {
+	if ckr.Terse {
+		return fmt.Sprintf("%s: %s", ckr.Status, ckr.Message)
+	}
+
 	return fmt.Sprintf("%s %s: %s", ckr.Name, ckr.Status, ckr.Message)
 }
 
