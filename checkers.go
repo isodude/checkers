@@ -57,6 +57,7 @@ func NewChecker(st Status, msg string) *Checker {
 // Checker is utility struct for check script
 type Checker struct {
 	Name    string
+	Terse   bool
 	Status  Status
 	Message string
 }
@@ -70,6 +71,10 @@ func (ckr *Checker) Exit() {
 }
 
 func (ckr *Checker) String() string {
+	if ckr.Terse {
+		return fmt.Sprintf("%s: %s", ckr.Status, ckr.Message)
+	}
+
 	return fmt.Sprintf("%s %s: %s", ckr.Name, ckr.Status, ckr.Message)
 }
 
